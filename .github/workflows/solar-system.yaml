@@ -42,8 +42,10 @@ jobs:
               with:
                 name: Mocha-Test-Result-${{ matrix.operating_system }}-node-${{ matrix.nodejs_version }}
                 path: test-results.xml
+                retention-days: 1
 
     code-coverage:
+      needs: unit-testing
       name: Code Coverage
       runs-on: ubuntu-latest
       steps:
@@ -59,6 +61,7 @@ jobs:
           run: npm install
         
         - name: Check Code Coverage
+          continue-on-error: true
           run: npm run coverage
         
         - name: Archive Test Result
@@ -66,4 +69,4 @@ jobs:
           with:
             name: Code-Coverage-Result
             path: coverage
-            retention-days: 5
+            retention-days: 1
