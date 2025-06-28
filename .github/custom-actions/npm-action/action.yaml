@@ -11,7 +11,7 @@ runs:
       uses: actions/cache@v4
       with:
         path: ${{ inputs.path-of-folder }}
-        key: ${{ runner.os }}-node-modules-${{ package-lock.json }}
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
       
     - name: Install dependencies
       run: npm Install
