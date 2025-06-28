@@ -40,15 +40,10 @@ jobs:
               with:
                 node-version: ${{ matrix.nodejs_version }}
 
-            - name: Cache NPM dependencies
-              uses: actions/cache@v4
+            - name: composite Action - Cache & Install NPM Packages
+              uses: ./.github/custom-actions/actions.yaml
               with:
-                path: node_modules
-                key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
-                
-
-            - name: Install Dependencies
-              run: npm install
+                path-of-folder: node_modules
             
             - name: Unit Testing
               id: nodejs-unit-testing-step

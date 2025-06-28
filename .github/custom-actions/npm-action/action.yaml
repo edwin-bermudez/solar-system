@@ -1,0 +1,19 @@
+name:
+description:
+inputs:
+  path-of-folder:
+    required: true
+    description: "The path of the folder"
+runs:
+  using: "composite"
+  steps: 
+    - name: Cache NPM dependencies
+      uses: actions/cache@v4
+      with:
+        path: ${{ inputs.path-of-folder }}
+        key: ${{ runner.os }}-node-modules-${{ package-lock.json }}
+      
+    - name: Install dependencies
+      run: npm Install
+      shell: bash
+  
