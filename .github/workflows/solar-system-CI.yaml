@@ -41,7 +41,7 @@ jobs:
                 node-version: ${{ matrix.nodejs_version }}
 
             - name: composite Action - Cache & Install NPM Packages
-              uses: ./.github/custom-actions/actions.yaml
+              uses: ./.github/custom-actions/action.yaml
               with:
                 path-of-folder: node_modules
             
